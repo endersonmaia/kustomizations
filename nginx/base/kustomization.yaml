@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  enderson.github.io/kustomizations: nginx
+
+images:
+  - name: nginx
+    newName: nginx
+    newTag: "1.21"
+
+configMapGenerator:
+  - name: nginx-config
+    literals:
+      - CONFIG=value
+
+resources:
+  - deployment.yaml
+  - service.yaml
